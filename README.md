@@ -30,10 +30,9 @@
 - Aller dans le Windows Store et installer **Ubuntu**
   
 ## Transfert de port USB vers WSL :
-[https://learn.microsoft.com/en-us/windows/wsl/connect-usb](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
+- **Pour plus d'infos:** [https://learn.microsoft.com/en-us/windows/wsl/connect-usb](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
 
-- Sur windows, installer **usbipd-win** et pour permettre le partage de port avec WSL (VM ubuntu)
-[https://github.com/dorssel/usbipd-win/releases](https://github.com/dorssel/usbipd-win/releases)
+- Sur windows, installer **usbipd-win** pour permettre le partage de port avec WSL (VM ubuntu) : [https://github.com/dorssel/usbipd-win/releases](https://github.com/dorssel/usbipd-win/releases)
 
 - ⚠ **Lancer WSL command prompt** (chercher WSL et lancer), obligatoire pour laisser la VM active
 
@@ -45,7 +44,7 @@ BUSID  VID:PID    DEVICE                                    STATE
 1-8    10c4:ea60  Silicon Labs CP210x USB to UART Bridge (COM11)  Not shared
 ```
 
-- Toujours sous Powershell **Partager et rattacher le port USB du dongle à WSL**, avec les commandes **usbpid bind --busid <port_identifier_précédemment>**, puis **usbipd attach --wsl --<port_identifier_précédemment>**
+- Toujours sous Powershell **partager et rattacher le port USB du dongle à WSL**, avec les commandes **usbpid bind --busid <port_identifié_précédemment>**, puis **usbipd attach --wsl --<port_identifié_précédemment>**
 
 ```  
 $ usbipd bind --busid 1-8
