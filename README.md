@@ -1,9 +1,8 @@
 # Migration-EFR32MG21-vers-EFR32MG24
-Process de migration d'un dongle zigbee EFR32MG21 vers EFR32MG24 sans ré-appairage, **par clonage**
-Ce process peut également être utilisé pour réaliser un clone sans migration d'un dongle Zigbee EFR32MG21 ou EFR32MG24 
-
-Merci à **@Nerivec** pour son assistance et son travail sur ember-zli
-Merci à **@darkxst** pour la mise à disposition des firmware spécifiques à l'EFR32MG24
+- Process de migration d'un dongle zigbee EFR32MG21 vers EFR32MG24 sans ré-appairage, **par clonage**
+- Ce process peut également être utilisé pour réaliser un clone sans migration d'un dongle Zigbee EFR32MG21 ou EFR32MG24 
+- Merci à **@Nerivec** pour son assistance et son travail sur ember-zli
+- Merci à **@darkxst** pour la mise à disposition des firmware spécifiques à l'EFR32MG24
 
 **Remarques - Recommandations**
 
@@ -130,7 +129,7 @@ Lancer à nouveau la commande **ember-zli stack** après vous être assuré que 
   * le port de notre clé logiquement facilement identifiable,
   * **flow control hardware**,
   * et finalement **Restore NVM3 tokens** qui prendra par défaut le fichier tokens_backup.nvm3 produit précédemment.
-- Après ces étape, vous avez maintenant un clone de votre clé
+- Après ces étapes, vous avez maintenant un clone de votre clé
 
 ```
 ember-zli stack
@@ -145,4 +144,17 @@ ember-zli stack
 L’ancien dongle n’est plus utilisable sur le réseau ou à proximité car les deux dongles ont maintenant le même EUI64.
 Si l’on souhaite recycler la clé, il faut lui donner un nouvel EUI64. Il faut alors faire un **Reset NVM3 Tokens** puis un **Write EUI64 NVM3 token**. Changer les 2 ou 3 derniers caractères en s’assurant qu’ils ne sont pas pris par un périphérique existant. Je n'ai pas tester ce point souhaitant garder mon ancienne clé en backup.
 
+**Home assistant**
+* Installer la nouvelle clé sur home assistant.
+* Si zigbee2mqtt est planté, pas de panique... c'est sans doute que vous utilisez un nommage strict du port USB, il suffit d'identifier le nouveau nom dans **System/Settings/Hardware** et de le modifier dans la configuration de l'addon zigbee2mqtt sous home assistant (addon arrêté, watchdog désactivé momentanément)
+* Dans le fichier **configuration.yaml** sous **/Config/zigbee2mqtt** modifier également le nom du port et passer rtscts à true (contrôle de flux hardware sur l'EFR32MG24)
+* Réactiver le Watchdog sur l'addon zigbee2mqtt et relancer l'addon... logiquement vous devriez maintenant retrouver tous vos périphériques et votre réseau !
 
+**Dans l'addon zigbee2mqtt**
+![Snag_35f8075](https://github.com/user-attachments/assets/593b9f1b-2ff3-48fa-b7ae-aa84b1f09fd7)
+
+**Dans configuration.yaml** sous **/Config/zigbee2mqtt** - AVANT
+![Snag_35faf26](https://github.com/user-attachments/assets/3c198de5-137f-4ec0-b5a5-a16fed59d617)
+
+**Dans configuration.yaml** sous **/Config/zigbee2mqtt** - APRES
+![Snag_35fcc53](https://github.com/user-attachments/assets/f28bcb33-b0ac-4d8f-b84b-ac3259f95cc6)
