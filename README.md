@@ -139,11 +139,11 @@ ember-zli stack
 [2024-10-10 09:04:41.374] info: cli: Restored tokens.
 ```
 
-**Remarque importante**
+# **Remarque importante**
 L’ancien dongle n’est plus utilisable sur le réseau ou à proximité car les deux dongles ont maintenant le même EUI64.
 Si l’on souhaite recycler la clé, il faut lui donner un nouvel EUI64. Il faut alors faire un **Reset NVM3 Tokens** puis un **Write EUI64 NVM3 token**. Changer les 2 ou 3 derniers caractères en s’assurant qu’ils ne sont pas pris par un périphérique existant. Je n'ai pas tester ce point souhaitant garder mon ancienne clé en backup.
 
-**Home assistant**
+# **Home assistant**
 * Installer la nouvelle clé sur home assistant.
 * Si zigbee2mqtt est planté, pas de panique... c'est sans doute que vous utilisez un nommage strict du port USB, il suffit d'identifier le nouveau nom dans **System/Settings/Hardware** et de le modifier dans la configuration de l'addon zigbee2mqtt sous home assistant (addon arrêté, watchdog désactivé momentanément)
 * Dans le fichier **configuration.yaml** sous **/Config/zigbee2mqtt** modifier également le nom du port et passer rtscts à true (contrôle de flux hardware sur l'EFR32MG24)
