@@ -9,7 +9,7 @@
 
 - This guide only concerns the migration of a key based on EFR32MG21 to EFR32MG24.
 - but it can also be used to create a clone without migrating a Zigbee EFR32MG21 or EFR32MG24 dongle
-- It is based on the use of WSL (Windows Subsystem for Linux) and Ubuntu under Windows 11.
+- It is based on the use of node.js under Windows.
 - This process allows retaining the entire network without having to re-pair devices.
 - Take all necessary precautions, such as making a backup of Home Assistant or a snapshot of the VM.
 - It is important that both dongles have the same version of the Zigbee Ember firmware, in my case 7.4.4.
@@ -25,54 +25,16 @@
 
 - ⚠ To avoid errors, connect **1 key at a time**.
 
-## Install WSL – Windows Subsystem for Linux
+## Install Node.js :
 
-- Virtualization at the BIOS level must be enabled. 
-- Go to the Windows Store and install **Ubuntu**
+- https://nodejs.org/en/download/prebuilt-installer
   
-## USB Port Transfer to WSL:
-- **For more info:** [https://learn.microsoft.com/en-us/windows/wsl/connect-usb](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
-
-- On Windows, install **usbipd-win** to enable port sharing with WSL (Ubuntu VM): [https://github.com/dorssel/usbipd-win/releases](https://github.com/dorssel/usbipd-win/releases)
-
-- ⚠ **Launch WSL command prompt** (search WSL and launch), mandatory to keep the VM active
-
 - **Launch PowerShell (admin)**, connect the key to a USB port and run the **usbipd list** command to identify the source dongle port.
 ```
 $ usbipd list
 Connected:
 BUSID  VID:PID    DEVICE                                    STATE
 1-8    10c4:ea60  Silicon Labs CP210x USB to UART Bridge (COM11)  Not shared
-```
-
-- Still in PowerShell **share and attach the USB port of the dongle to WSL**, with the commands **usbpid bind --busid <previously_identified_port>**, then **usbipd attach --wsl --<previously_identified_port>**
-
-```  
-$ usbipd bind --busid 1-8
-
-$ usbipd attach --wsl --busid 1-8
-```
-
-It is possible to run a **usbipd list** command again to check that the port is properly attached.
-
-## Installing the necessary packages on Ubuntu
-
-- **Search and launch Ubuntu on Windows**
-- Install the packages **usbutils, nodejs, and npm**
-- The **lsusb** command allows listing the connected USB ports
-  
-```
-$ sudo apt install usbutils
-
-$ sudo apt-get install nodejs
-
-$ sudo apt install npm
-```
-
-```
-$ lsusb
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 001 Device 002: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
 ```
 
 **Installing ember-zli**
