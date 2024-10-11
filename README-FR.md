@@ -8,7 +8,7 @@
 
 - Ce guide ne concerne que la migration d’une clé à base de EFR32MG21 vers EFR32MG24.
 - mais il peut également être utilisé pour réaliser un clone sans migration d'un dongle Zigbee EFR32MG21 ou EFR32MG24 
-- Il se base sur l’utilisation node.js sous windows.
+- Il se base sur l’utilisation **Node.js sous windows.**
 - Ce process permet de conserver la totalité du réseau sans avoir à réappairer les équipements.
 - Prendre toutes les précautions nécessaires, faire un backup de home assistant ou snapshot de VM par exemple.
 - Il est important que les deux dongles aient la même version de firmware zigbee ember, dans mon cas 7.4.4
