@@ -28,16 +28,10 @@
 ## Install Node.js :
 
 - https://nodejs.org/en/download/prebuilt-installer
-  
-- **Launch PowerShell (admin)**, connect the key to a USB port and run the **usbipd list** command to identify the source dongle port.
-```
-$ usbipd list
-Connected:
-BUSID  VID:PID    DEVICE                                    STATE
-1-8    10c4:ea60  Silicon Labs CP210x USB to UART Bridge (COM11)  Not shared
-```
 
-**Installing ember-zli**
+## Installing ember-zli
+
+ **Launch Powershell (admin)**
 [https://github.com/Nerivec/ember-zli](https://github.com/Nerivec/ember-zli)
 
 - Useful information:
@@ -49,10 +43,18 @@ BUSID  VID:PID    DEVICE                                    STATE
 $ sudo npm install -g ember-zli
 ```
 
+## Identify Dongle USB Port
+- **Still using PowerShell**, connect the key to a USB port and run the **usbipd list** command to identify the source dongle port.
+```
+$ usbipd list
+Connected:
+BUSID  VID:PID    DEVICE                                    STATE
+1-8    10c4:ea60  Silicon Labs CP210x USB to UART Bridge (COM11)  Not shared
+```
+
 ## Backup of the original ZBDONGLE-E EFR32MG21 key in my case
 
-- Of course, the key must be mounted on the WSL as indicated in the previous steps.
-- **On Ubuntu**, run the **ember-zli stack** command.
+- **On Powershell**, run the **ember-zli stack** command.
 - In the choices, select:
   * connection type serial,
   * firmware baudrate 115200,
