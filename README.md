@@ -158,6 +158,9 @@ If you want to reuse the key, you must give it a new EUI64. You should then perf
 ![Snag_35faf26](https://github.com/user-attachments/assets/3c198de5-137f-4ec0-b5a5-a16fed59d617)
 
 **Inside configuration.yaml** under **/Config/zigbee2mqtt** - AFTER
+
+***changing rtscts is entirely adapter-dependent***
+
 ![Snag_35fcc53](https://github.com/user-attachments/assets/f28bcb33-b0ac-4d8f-b84b-ac3259f95cc6)
 
 
