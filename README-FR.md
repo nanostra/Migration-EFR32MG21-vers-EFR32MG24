@@ -8,7 +8,7 @@
 
 - Ce guide ne concerne que la migration d’une clé à base de EFR32MG21 vers EFR32MG24.
 - mais il peut également être utilisé pour réaliser un clone sans migration d'un dongle Zigbee EFR32MG21 ou EFR32MG24 
-- Il se base sur l’utilisation de WSL (Windows subsystem for linux) et Ubuntu sous Windows 11.
+- Il se base sur l’utilisation node.js sous windows.
 - Ce process permet de conserver la totalité du réseau sans avoir à réappairer les équipements.
 - Prendre toutes les précautions nécessaires, faire un backup de home assistant ou snapshot de VM par exemple.
 - Il est important que les deux dongles aient la même version de firmware zigbee ember, dans mon cas 7.4.4
@@ -24,58 +24,14 @@
 
 - ⚠ Pour éviter les erreurs de manipulation, connecter **1 clé à la fois**.
 
-## Installer WSL – Windows subsystem for linux
+## Installer Node.js :
 
-- La virtualisation au niveau BIOS doit être activée. 
-- Aller dans le Windows Store et installer **Ubuntu**
+- https://nodejs.org/en/download/prebuilt-installer
   
-## Transfert de port USB vers WSL :
-- **Pour plus d'infos:** [https://learn.microsoft.com/en-us/windows/wsl/connect-usb](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
+## Installation ember-zli 
 
-- Sur windows, installer **usbipd-win** pour permettre le partage de port avec WSL (VM ubuntu) : [https://github.com/dorssel/usbipd-win/releases](https://github.com/dorssel/usbipd-win/releases)
+ **Lancer PowerShell (admin)**
 
-- ⚠ **Lancer WSL command prompt** (chercher WSL et lancer), obligatoire pour laisser la VM active
-
-- **Lancer PowerShell (admin)**, connecter la clé sur un port USB et lancer la commande **usbipd list** pour identifier le port du dongle source.
-```
-$ usbipd list
-Connected:
-BUSID  VID:PID    DEVICE                                    STATE
-1-8    10c4:ea60  Silicon Labs CP210x USB to UART Bridge (COM11)  Not shared
-```
-
-- Toujours sous Powershell **partager et rattacher le port USB du dongle à WSL**, avec les commandes **usbpid bind --busid <port_identifié_précédemment>**, puis **usbipd attach --wsl --<port_identifié_précédemment>**
-
-```  
-$ usbipd bind --busid 1-8
-
-$ usbipd attach --wsl --busid 1-8
-```
-
-Il est possible de refaire une commande **usbipd list** pour vérifier que le port est bien attaché.
-
-## Installations des packages nécessaires sur Ubuntu
-
-- **Rechercher et lancer Ubuntu sur windows**
-- Installation des packages **usbutils, nodejs, et npm**
-- la commande **lsusb** permet de lister les ports usb liés
-  
-```
-$ sudo apt install usbutils
-
-$ sudo apt-get install nodejs
-
-$ sudo apt install npm
-
-```
-
-```
-$ lsusb
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 001 Device 002: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
-```
-
-**Installation ember-zli**
 [https://github.com/Nerivec/ember-zli](https://github.com/Nerivec/ember-zli)
 
 - Informations utiles :
@@ -87,10 +43,19 @@ Bus 001 Device 002: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
 $ sudo npm install -g ember-zli
 ```
 
+## Identifier le port USB du dongle
+
+**Toujours sous PowerShell**, connecter la clé sur un port USB et lancer la commande **usbipd list** pour identifier le port du dongle source.
+```
+$ usbipd list
+Connected:
+BUSID  VID:PID    DEVICE                                    STATE
+1-8    10c4:ea60  Silicon Labs CP210x USB to UART Bridge (COM11)  Not shared
+```
+
 ## Backup de la clé d’origine ZBDONGLE-E EFR32MG21 dans mon cas
 
-- Bien entendu, il faut que la clé soit montée sur le WSL comme indiqué dans les étapes précédentes.
-- **Sous Ubuntu**, lancer la commande **ember-zli stack**
+- **Sous Powershell**, lancer la commande **ember-zli stack**
 - Dans les choix, l'on choisira :
   * connection type serial,
   * firmware baudrate 115200,
