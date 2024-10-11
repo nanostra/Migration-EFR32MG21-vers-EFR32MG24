@@ -143,7 +143,10 @@ ember-zli stack
 The old dongle is no longer usable on the network or nearby because both dongles now have the same EUI64.
 If you want to reuse the key, you must give it a new EUI64. You should then perform a **Reset NVM3 Tokens** and then a **Write EUI64 NVM3 token**. Change the last 2 or 3 characters, ensuring they are not already in use by an existing device. I haven't tested this as I wanted to keep my old key as a backup.
 
-**Remark from @Nerivec following the publication of this guide** : ***About "keeping the old dongle as backup": as soon as you started up the network again on the new dongle, several tokens would have started changing again (frame counters & such), which means it is no longer synced with the old one. If you ever were to put the old dongle on the network (as emergency I assume), best course of actions would be to restore the latest Z2M coordinator_backup.json onto it (which means leaving the network with Ember ZLI, then starting Z2M, which will trigger the network restore process), otherwise, you might encounter some sync issues (EmberZNet seems pretty resilient in that regards, but still worth mentioning). You could also take regular tokens backup of the new dongle, for extra safety.***
+**Remark from @Nerivec following the publication of this guide** : 
+```
+About "keeping the old dongle as backup": as soon as you started up the network again on the new dongle, several tokens would have started changing again (frame counters & such), which means it is no longer synced with the old one. If you ever were to put the old dongle on the network (as emergency I assume), best course of actions would be to restore the latest Z2M coordinator_backup.json onto it (which means leaving the network with Ember ZLI, then starting Z2M, which will trigger the network restore process), otherwise, you might encounter some sync issues (EmberZNet seems pretty resilient in that regards, but still worth mentioning). You could also take regular tokens backup of the new dongle, for extra safety.
+```
 
 # **Home Assistant**
 * Install the new key on Home Assistant.
