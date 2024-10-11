@@ -161,4 +161,6 @@ Si l’on souhaite recycler la clé, il faut lui donner un nouvel EUI64. Il faut
 ![Snag_35faf26](https://github.com/user-attachments/assets/3c198de5-137f-4ec0-b5a5-a16fed59d617)
 
 **Dans configuration.yaml** sous **/Config/zigbee2mqtt** - APRES
+
+***Le passage du contrôle de flux en hardware dépend du matériel utilisé***
 ![Snag_35fcc53](https://github.com/user-attachments/assets/f28bcb33-b0ac-4d8f-b84b-ac3259f95cc6)
