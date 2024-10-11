@@ -29,7 +29,7 @@
 
 - https://nodejs.org/en/download/prebuilt-installer
 
-## Install ember-zli
+## Install ember-zli from de @Nerivec
 
  **Launch Powershell (admin)**
 [https://github.com/Nerivec/ember-zli](https://github.com/Nerivec/ember-zli)
