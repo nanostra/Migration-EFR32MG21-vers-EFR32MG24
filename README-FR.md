@@ -28,7 +28,7 @@
 
 - https://nodejs.org/en/download/prebuilt-installer
   
-## Installation ember-zli 
+## Installer ember-zli de @Nerivec
 
  **Lancer PowerShell (admin)**
 
