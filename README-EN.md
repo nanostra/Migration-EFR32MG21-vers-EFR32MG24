@@ -148,3 +148,14 @@ If you want to reuse the key, you must give it a new EUI64. You should then perf
 * If zigbee2mqtt crashes, don't panic... it’s likely due to using a strict USB port naming; simply identify the new name in **System/Settings/Hardware** and modify it in the zigbee2mqtt addon configuration under Home Assistant (addon stopped, watchdog temporarily disabled).
 * In the **configuration.yaml** file under **/Config/zigbee2mqtt**, also change the port name and set rtscts to true (hardware flow control on the EFR32MG24).
 * Reactivate the Watchdog on the zigbee2mqtt addon and restart the addon... logically, you should now find all your devices and network!
+
+**addon zigbee2mqtt**
+![Snag_35f8075](https://github.com/user-attachments/assets/593b9f1b-2ff3-48fa-b7ae-aa84b1f09fd7)
+
+**Inside configuration.yaml** under **/Config/zigbee2mqtt** - BEFORE
+![Snag_35faf26](https://github.com/user-attachments/assets/3c198de5-137f-4ec0-b5a5-a16fed59d617)
+
+**Inside configuration.yaml** under **/Config/zigbee2mqtt** - AFTER
+![Snag_35fcc53](https://github.com/user-attachments/assets/f28bcb33-b0ac-4d8f-b84b-ac3259f95cc6)
+
+
